@@ -1,0 +1,184 @@
+public class Main {
+
+    public static void main(String[] args) {
+//39
+        try {
+            int a = 5;
+            int b = 0;
+            int z = a / b;
+        } catch (Exception ArithmeticException) {
+            System.out.println("Exception");
+        } finally {
+            System.out.println("The 'try catch' is finish");
+
+        }
+        int age = 19;
+        if (age < 18) {
+            throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+        } else {
+            System.out.println("Access granted - Welcome to the army!");
+        }
+        //ArrayIndexOutOfBoundsException
+    /*   int array[] = {2, 3, 4, 5};
+        array[5] = 7;
+        String string = "Hand";
+        //NullPointerException
+        Main m=initE();
+        m.ToLower("Hello Exception");
+        //IndexOutOfBoundsException
+        */
+        int arrays[]={};
+        arrays[1]=1;
+
+
+
+    }
+
+    public static Main initE() {
+        return null;
+    }
+    public void ToLower(String s) {
+        System.out.println(s.toLowerCase());
+    }
+
+    }
+class Plant{
+    public String name;
+    public String area;
+    public int age;
+
+    {
+        name = "Undefined";
+        age = 7;
+    }
+
+    public Plant(String name) {
+
+        this.name = name;
+    }
+    public Plant(String name, int age) {
+
+        this.name = name;
+        this.age = age;
+    }
+
+    public void display(){
+
+        System.out.println("Name: " + name);
+    }
+}
+
+class Tree extends Plant {
+
+    private float hight;
+
+    public Tree(String name, float hight) {
+        super(name);
+        this.hight = hight;
+    }
+public Tree(String name){
+    super(name);
+
+}
+
+    @Override
+    public void display() {
+        super.display();
+        System.out.println("Hight:" + hight);
+    }
+}
+
+class Flower extends Plant {
+    private String color;
+
+    public Flower(String name, String color) {
+        super(name);
+        this.color = color;
+    }
+}
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public class Sort {
+    public static void main(String[] args) {
+        List<Student> studentList = new ArrayList<Student>();
+
+        studentList.add(new Student("Nickita", "Kolesnikov", 19));
+        studentList.add(new Student("Roma", "Shkil",19));
+        studentList.add(new Student("Kiril", "Valitov",19));
+        studentList.add(new Student("Bogdan", "Valus",19));
+        //studentList.get(0).setCurrentCondition(new);
+        Collections.sort(studentList, new Student.AgeComparator());
+        System.out.println(studentList);
+    }
+
+    }
+    
+    import java.util.Comparator;
+
+public class Student implements Comparable<Student>{
+    private Comparable<Student> currentCondition;
+    String name;
+    String surname;
+    int age;
+    public Student(String name, String surname, int age) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        if (currentCondition == null) {
+            currentCondition = new Comparable<Student>() {
+                @Override
+                public int compareTo(Student s) {
+                    return Student.this.getName().compareTo(s.getName());
+                }
+            };
+        }
+    }
+
+    public Student(String name, String surname, int age, Comparable<Student> condition){
+        this(name,surname, age);
+        currentCondition = condition;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getSurname(){
+        return surname;
+    }
+
+    public int getAge(){
+        return age;
+    }
+
+    public void setCurrentCondition(Comparable<Student> currentConditionNew){
+        currentCondition = currentConditionNew;
+    }
+
+    public int compareTo(Student s){
+        return currentCondition.compareTo(s);
+        //return getName().compareTo(s.getName());
+    }
+
+    public static Comparator<Student> SurnameComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student s1, Student s2) {
+            return s1.getSurname().toUpperCase().compareTo(s2.getSurname().toUpperCase());
+        }
+    };
+
+    public static class AgeComparator implements Comparator<Student> {
+        public int compare(Student s1, Student s2){
+            return s1.getAge() - s2.getAge();
+        }
+    }
+
+    public String toString(){
+        return "Student: name = " + name +
+                ", surname = " + surname +
+                ", age = " + age + ".";
+    }
+
+}
